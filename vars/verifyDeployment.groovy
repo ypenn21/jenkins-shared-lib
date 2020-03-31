@@ -1,7 +1,7 @@
 def call(String appName, String projectName ){
     environment {
-		APP_NAME = "java-pet-docker"
-		SOURCE_CONTEXT_DIR = ""
+	APP_NAME = "java-pet-docker"
+	SOURCE_CONTEXT_DIR = ""
         JENKINS_TAG = "latest"
         UBER_JAR_CONTEXT_DIR = "target/"
         PROTOBIN_CONTEXT_DIR = "target/protobin/"
@@ -14,6 +14,6 @@ def call(String appName, String projectName ){
         DEV_REPO_KEY = "dev-images"
         ARTIFACTORY_SECRET_NAME = "${CI_CD_NAMESPACE}-artifactory-access-token"
         server = "something"
-	}
+    }
     echo "Initialize Environment variables complete"
 }
