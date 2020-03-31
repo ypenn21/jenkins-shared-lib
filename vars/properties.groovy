@@ -1,5 +1,4 @@
-@groovy.transform.Field
-def SERVER = "SOMETHING.YANNI.com"
+def SERVER() { return "SOMETHING.YANNI.com" }
 
 @groovy.transform.Field
 def environment = {
