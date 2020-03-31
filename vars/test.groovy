@@ -1,3 +1,3 @@
 def call( ){
-    return "yanni.com"
+    return [server:'yanni.com', date:'03/31/2020']
 }
