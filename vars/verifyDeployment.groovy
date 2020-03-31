@@ -1,19 +1,21 @@
 def call(String appName, String projectName ){
-    environment {
-	APP_NAME = "java-pet-docker"
-	SOURCE_CONTEXT_DIR = ""
-        JENKINS_TAG = "latest"
-        UBER_JAR_CONTEXT_DIR = "target/"
-        PROTOBIN_CONTEXT_DIR = "target/protobin/"
-        UBER_JAR_FILE="target/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar"
-        OCP_API_SERVER = "${OPENSHIFT_API_URL}"
-        OCP_TOKEN = readFile('/var/run/secrets/kubernetes.io/serviceaccount/token').trim()
-        APPLIER_SKIP_TAGS = "bitbucket-jenkins-webhook"
-        APPLIER_TARGET = "app"
-        ARTIFACTORY_DEV_REPO = "omnitracs-dev-images.jfrog.io"
-        DEV_REPO_KEY = "dev-images"
-        ARTIFACTORY_SECRET_NAME = "${CI_CD_NAMESPACE}-artifactory-access-token"
-        server = "something"
+    openshift.withCluster () {
+        echo "Verifying deployment with project " + projectName + " of app " + appName + " 10 second wait"
+        sleep 10 // give the deployment a few seconds. Will never complete that fast
+        openshift.withProject( projectName ){
+            echo "Finding dc " + appName
+            def latestDeploymentVersion = openshift.selector('dc', appName ).object().status.latestVersion
+            echo "Latest version " + latestDeploymentVersion
+            echo "Finding rc " + appName + "-" + latestDeploymentVersion
+            def rc = openshift.selector('rc', "${appName}-${latestDeploymentVersion}")
+            echo "Found rc " + rc.toString()
+            // echo rc.toString()
+            rc.untilEach(1){
+                def rcMap = it.object()
+                echo "Replica counts match " + rcMap.status.replicas.equals(rcMap.status.readyReplicas)
+                return (rcMap.status.replicas.equals(rcMap.status.readyReplicas))
+            }
+        }
     }
-    echo "Initialize Environment variables complete"
+    echo "Verification complete"
 }
