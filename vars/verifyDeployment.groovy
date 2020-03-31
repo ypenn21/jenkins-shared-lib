@@ -19,3 +19,5 @@ def call(String appName, String projectName ){
     }
     echo "Verification complete"
 }
+
+def server = "something"
