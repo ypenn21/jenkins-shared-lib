@@ -1,6 +1,6 @@
 def call(String appName, String projectName ){
     openshift.withCluster () {
-        echo "Verifying deployment with project " + projectName + " of app " + appName + " 10 second wait"
+        echo "Yanni Verifying deployment with project " + projectName + " of app " + appName + " 10 second wait"
         sleep 10 // give the deployment a few seconds. Will never complete that fast
         openshift.withProject( projectName ){
             echo "Finding dc " + appName
