@@ -1,5 +1,7 @@
+@groovy.transform.Field
 def SERVER = "SOMETHING.YANNI.com"
 
+@groovy.transform.Field
 def environment = {
     APP_NAME = "java-pet-docker"
     SOURCE_CONTEXT_DIR = ""
