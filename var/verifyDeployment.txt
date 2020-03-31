@@ -1,0 +1,25 @@
+# Verify Deployment
+
+Verifies OpenShift deployment by checking each deployed pods status.
+
+Sample usage:
+
+```
+stage {
+    steps{
+        verifyDeployment(targetApp: "hello-world", projectName: "example-project")
+    }
+}
+```
+
+Example with all parameters set:
+```
+stage {
+    steps{
+        verifyDeployment(targetApp: "hello-world", 
+                 projectName: "example-project", 
+                 clusterUrl: "https://master.example.com"
+                 clusterToken: "<Openshift token>")
+    }
+}
+```
