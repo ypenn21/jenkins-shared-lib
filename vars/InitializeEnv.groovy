@@ -1,4 +1,4 @@
-def call(){
+def call(env){
   environment {
 		    APP_NAME = "java-pet-docker"
 		    SOURCE_CONTEXT_DIR = ""
@@ -15,6 +15,6 @@ def call(){
         ARTIFACTORY_SECRET_NAME = "${CI_CD_NAMESPACE}-artifactory-access-token"
         SERVER = "SOMETHING YANNI"
 	 }
-    
+   env = environment 
    echo "Initialize environment variables "
 }
