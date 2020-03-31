@@ -1,6 +1,6 @@
 package org.citi
 
-def SERVER = "SOMETHING.YANNI.com"
+def server() { return "SOMETHING.YANNI.com" }
 
 def environment = {
     APP_NAME = "java-pet-docker"
