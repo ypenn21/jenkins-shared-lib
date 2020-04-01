@@ -1,3 +1,4 @@
+// none of this works
 def SERVER() { return "SOMETHING.YANNI.com" }
 
 @groovy.transform.Field
