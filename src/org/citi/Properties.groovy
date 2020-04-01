@@ -8,8 +8,8 @@ class Properties implements Serializable {
 
         return {
             APP_NAME = "java-pet-docker"
-            MY_SERVER = properties2.server()
-            myMap = test()
+            MY_SERVER = "yanni.com"
+            myMap = "[:]"
         }
     }
 }
