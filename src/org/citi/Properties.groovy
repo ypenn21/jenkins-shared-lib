@@ -2,9 +2,9 @@ package org.citi
 
 class Properties implements Serializable {
 
-    def server() { return "SOMETHING.YANNI.com" }
+    static def server() { return "SOMETHING.YANNI.com" }
 
-    def environment() {
+    static def environment() {
 
         return {
             APP_NAME = "java-pet-docker"
